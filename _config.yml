@@ -1,0 +1,20 @@
+# Jekyll Configuration
+
+name:        Insight.com Redesign
+
+# Dependencies
+markdown:    redcarpet
+
+# Permalinks
+permalink:   pretty
+
+# Custom Vars
+source:      _build
+destination: _deploy
+exclude:     [".gitignore", ".editorconfig", "README.md", "config.rb", "scss", "bower.json", ".bowerrc"]
+
+# Sass
+sass:
+  sass_dir: _scss
+  style: :expanded
+  line_numbers: true

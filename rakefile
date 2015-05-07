@@ -1,0 +1,37 @@
+require 'premailer'
+require 'fileutils'
+
+task default: %w[build]
+
+task :build do
+  #Build Jeykll emails
+  `jekyll build`
+  #Inline the CSS
+  Dir.glob('_deploy/**/*.html') do |inlinethis|
+    premailer = Premailer.new(inlinethis, :warn_level => Premailer::Warnings::SAFE)
+
+    path = "_inlined/"+ File.dirname(inlinethis).gsub("_deploy/","")
+    filename = File.basename(inlinethis)
+
+    FileUtils.mkdir_p(path)
+    File.new((path +"/" + filename),"w")
+    File.open((path + "/" + filename), "w") do |fout|
+      fout.puts premailer.to_inline_css
+    end
+    premailer.warnings.each do |w|
+      puts "#{w[:message]} (#{w[:level]}) may not render properly in #{w[:clients]}"
+    end
+
+  end
+
+  #copy our image files
+  Dir.glob('_deploy/**/*.{jpg,png,gif}') do |moveimage|
+    path = "_inlined/"+ File.dirname(moveimage).gsub("_deploy/","")
+    filename = File.basename(moveimage)
+    FileUtils.mkdir_p(path)
+    FileUtils.copy_file(moveimage, (path + "/" + filename))
+
+  end
+
+
+end
