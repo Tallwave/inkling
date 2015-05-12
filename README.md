@@ -2,11 +2,10 @@
 
 Inkling is a framework for creating responsive emails quickly using modern web technology.
 
-Dependencies:
-- Jekyll
-- Nokogiri (or hpricot)
-- Premailer
-- Rake
+## Before you Begin
+
+- Clone the repo
+- Be sure you've installed the dependencies. `bundle install` from the repo root. Alternately, install them manually (the list of dependencies is below) 
 
 ## Building the email
 
@@ -29,11 +28,15 @@ See the [Ink Documentation](http://zurb.com/ink/) for additional classes and ele
 
 ## Requirements
 
+- Ruby
 - [Jekyll](http://jekyllrb.com/) `gem install jekyll`
-- Rake `gem install rake`
 - Nokogiri `gem install nokogiri`
 - Premailer `gem install premailer`
 
 ## SCSS
 
 - [Sassy Ink](https://github.com/29thdrive/sassy-ink) Based on [Zurb's Ink](http://zurb.com/ink/)
+
+## Future Plans
+ - Use YML file for configuration
+ - Set this up as a ruby gem with an init script (like Foundation, Bootstrap, Compass, etc)
